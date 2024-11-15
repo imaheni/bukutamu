@@ -14,8 +14,17 @@ class _GuestBookHomePageState extends State<GuestBookHomePage> {
   @override
   void initState() {
     super.initState();
-    _controller = HomeController(initState: () => setState(() {}));
+    _controller = HomeController(context: context,setState: setState, onImagePicked: () {  }, onSubmit: () {  });
+  (
+      onImagePicked: () {
+        setState(() {}); // Memperbarui UI setelah gambar diambil
+      },
+      onSubmit: () {
+        setState(() {}); // Memperbarui UI setelah form dikirim
+      }, initState: () {  },
+    );
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -76,18 +85,30 @@ class _GuestBookHomePageState extends State<GuestBookHomePage> {
               _controller.nameController, 'Nama Anda', Icons.person),
           SizedBox(height: 10),
           _buildTextField(
-              _controller.institutionController, 'Instansi', Icons.business),
+              _controller.institutionController, 'Instansi/Alamat', Icons.business),
           SizedBox(height: 10),
           _buildTextField(
               _controller.purposeController, 'Keperluan', Icons.assignment),
           SizedBox(height: 10),
           _buildTextField(
-              _controller.recipientController, 'Orang yang akan ditemui', Icons.people),
+              _controller.recipientController, 'Yang akan ditemui', Icons.people),
           SizedBox(height: 10),
           _buildTextField(
               _controller.phoneController, 'Nomer Handphone', Icons.phone,
               keyboardType: TextInputType.phone),
           SizedBox(height: 20),
+
+          ElevatedButton.icon(
+            icon: Icon(Icons.camera_alt),
+            label: Text('Ambil Foto'),
+            onPressed: _controller.pickImageFromCamera,
+          ),
+          SizedBox(height: 10),
+          _controller.imageFile != null
+              ? Image.file(_controller.imageFile!, width: 150, height: 150)  // Menampilkan foto
+              : Text('Belum ada foto diambil'),
+          SizedBox(height: 20),
+
           ElevatedButton(
             onPressed: _controller.addGuestEntry,
             style: ElevatedButton.styleFrom(

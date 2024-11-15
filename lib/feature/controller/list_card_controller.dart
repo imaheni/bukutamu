@@ -25,11 +25,12 @@ class ListCardController {
           print("COBA ${guest}");
           dataGuests.add({
             "_id": guest['_id'],
-            "name": guest['name'],
-            "institution": guest['institution'],
-            "purpose": guest['purpose'],
-            "recipient": guest['recipient'],
-            "phone": guest['phone']
+            "name": guest['name']??'',
+            "institution": guest['institution']??'',
+            "purpose": guest['purpose']??'',
+            "recipient": guest['recipient']??'',
+            "phone": guest['phone']??'',
+            "imageUrl":guest['imageUrl']??''
           });
         }
         initState();

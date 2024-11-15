@@ -58,10 +58,10 @@ class _ListCardsViewState extends State<ListCardsView> {
                           Container(
                             width: 96,
                             height: 96,
-                            decoration: const BoxDecoration(
+                            decoration:  BoxDecoration(
                               image: DecorationImage(
                                 image: NetworkImage(
-                                  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+                                item['imageUrl'] ??    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
                                 ),
                                 fit: BoxFit.cover,
                               ),
